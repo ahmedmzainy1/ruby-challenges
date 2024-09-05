@@ -36,11 +36,45 @@ You then sum that number with the one preceding it to get the next number,, and 
 For example, if you have the sequence 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, then the next number in the sequence is 55.
 
 
+function fibonacci(n) {
+    let fibSequence = [0, 1];
+    for (let i = 2; i <= n; i++) {
+        fibSequence.push(fibSequence[i - 1] + fibSequence[i - 2]);
+    }
+    return fibSequence[n];
+}
+
+console.log(fibonacci(10)); // Output: 55
+
+
+
 ### challenge 2
 #### Missing Number Game
 Challenge: Create a program that takes a series of numbers and examines it to find the numbers missing to make it a perfect range.
 For example, the series of numbers could be [2, 1, 5, 4, 6, 9, 7, 8, 10].
 This array is missing the number 3. The goal of this problem is to write code that finds which numbers are missing, and print them out.
+
+function findMissingNumbers(arr) {
+    const min = Math.min(...arr);
+    const max = Math.max(...arr);
+    const numSet = new Set(arr);
+    let missingNumbers = [];
+
+    for (let i = min; i <= max; i++) {
+        if (!numSet.has(i)) {
+            missingNumbers.push(i);
+        }
+    }
+
+    if (missingNumbers.length === 0) {
+        console.log("No numbers are missing.");
+    } else {
+        console.log("Missing numbers:", missingNumbers);
+    }
+}
+
+const arr = [2, 1, 5, 4, 6, 9, 7, 8, 10];
+findMissingNumbers(arr);
 
 
 #### bonus point 
